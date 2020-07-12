@@ -28,7 +28,12 @@ $ inspec exec cis-level1-windows2016-member
 # run inspec profile on remote node
 inspec exec https://github.com/Prabhuapr1984/cis-level1-windows2016-member -t winrm://<ip-address/hostname>:5985 --user=<username> --password=<password>
 
+
+
+```
 # PowerShell Script to automate
+
+```
 
 $ErrorActionPreference = "silentlycontinue"
 $dir1 = "$env:SystemDrive\temp\inspec"
@@ -81,6 +86,10 @@ Else {Write-Host "Chef is already installed"}
 #################### Run the Inspec against the CIS Level 1 without downloading the profile#######
 # cd C:\opscode\chef-workstation\bin
 # Start-Process cmd "/c $env:SystemDrive\opscode\chef-workstation\bin\inspec exec https://github.com/Prabhuapr1984/cis-level1-windows2016-member &pause"
+
+
+```
+
 ## Contributors
 
 * Prabu Jaganathan [Prabhuapr1984](https://github.com/Prabhuapr1984)
