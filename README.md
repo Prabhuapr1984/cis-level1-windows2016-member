@@ -80,7 +80,7 @@ Else {Write-Host "Chef is already installed"}
 
 #################### Run the Inspec against the CIS Level 1 without downloading the profile#######
 # cd C:\opscode\chef-workstation\bin
-# Start-Process cmd "/c $env:SystemDrive\opscode\chef-workstation\bin\inspec exec https://github.com/dev-sec/windows-baseline &pause"
+# Start-Process cmd "/c $env:SystemDrive\opscode\chef-workstation\bin\inspec exec https://github.com/Prabhuapr1984/cis-level1-windows2016-member &pause"
 ## Contributors
 
 * Prabu Jaganathan [Prabhuapr1984](https://github.com/Prabhuapr1984)
