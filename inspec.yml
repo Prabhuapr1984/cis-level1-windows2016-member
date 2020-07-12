@@ -5,6 +5,6 @@ copyright: The Authors
 copyright_email: you@example.com
 license: Apache-2.0
 summary: An Inspec profile for windows 2016 member server based on CIS Level
-version: 0.1.0
+version: 0.1.1
 supports:
   platform: os
