@@ -169,6 +169,6 @@ control "xccdf_org.cisecurity.benchmarks_rule_1.2.3_L1_Ensure_Reset_account_lock
   "
   impact 1.0
   describe security_policy do
-    its("ResetLockoutCount") { should be >= 900 }
+    its("ResetLockoutCount") { should be >= 15 }
   end
 end
