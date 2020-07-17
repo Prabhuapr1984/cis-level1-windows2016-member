@@ -47,13 +47,15 @@ If(!(test-path $dir1) -or !(test-path $dir2) -or !(test-path $dir3)) {   ForEach
 $Gitinstallcheck = ($null -ne ( (Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*) + (Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*) | Where-Object { $null -ne $_.DisplayName -and $_.Displayname.Contains('Git') }))
 $GitSource = (Test-Path -Path "$env:SystemDrive\temp\installers\Git-2.27.0-64-bit.exe")
 If ($Gitinstallcheck -eq $false -and $GitSource -eq $false) {
-         Write-Host "Downloding Git"
+         Write-Host "Downloding Git and Install"
          (New-Object System.Net.WebClient).DownloadFile('https://github.com/git-for-windows/git/releases/download/v2.27.0.windows.1/Git-2.27.0-64-bit.exe', "$env:SystemDrive\temp\installers\Git-2.27.0-64-bit.exe")
+         $UnattendedArgs = '/verysilent'
+            (Start-Process "$env:SystemDrive\temp\installers\Git-2.27.0-64-bit.exe" $UnattendedArgs -Wait -Passthru).ExitCode
         }
     ElseIf ($Gitinstallcheck -eq $false) {
             Write-Host "installing Git"
             $UnattendedArgs = '/verysilent'
-            (Start-Process "$env:SystemDrive\temp\installers\Git-2.27.0-64-bit.exe" $UnattendedArgs -Wait -Passthru).ExitCode
+                (Start-Process "$env:SystemDrive\temp\installers\Git-2.27.0-64-bit.exe" $UnattendedArgs -Wait -Passthru).ExitCode
         }
 ElseIf ($Gitinstallcheck -eq $true) {Write-Host "Installed Git Client already"}
 
@@ -61,13 +63,15 @@ ElseIf ($Gitinstallcheck -eq $true) {Write-Host "Installed Git Client already"}
 $Vscodeinstallcheck = ($null -ne ( (Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*) + (Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*) | Where-Object { $null -ne $_.DisplayName -and $_.Displayname.Contains('Visual Studio Code') }))
 $VscodeSource = (Test-Path -Path "$env:SystemDrive\temp\installers\vscode-stable.exe")
 If ($Vscodeinstallcheck -eq $false -and $VscodeSource -eq $false) {
-         Write-Host "Downloding Visual Studio Code"
+         Write-Host "Downloding Visual Studio Code and Install"
          Invoke-WebRequest -Uri https://vscode-update.azurewebsites.net/latest/win32/stable -OutFile $env:SystemDrive\temp\installers\vscode-stable.exe
+         $UnattendedArgs = '/verysilent /suppressmsgboxes /mergetasks=!runcode'
+            (Start-Process "$env:SystemDrive\temp\installers\vscode-stable.exe" $UnattendedArgs -Wait -Passthru).ExitCode
     }
 ElseIf ($Vscodeinstallcheck -eq $false) {
         Write-Host "Installing Visual Studio Code"
         $UnattendedArgs = '/verysilent /suppressmsgboxes /mergetasks=!runcode'
-        (Start-Process "$env:SystemDrive\temp\installers\vscode-stable.exe" $UnattendedArgs -Wait -Passthru).ExitCode
+            (Start-Process "$env:SystemDrive\temp\installers\vscode-stable.exe" $UnattendedArgs -Wait -Passthru).ExitCode
     }
 ElseIf ($Vscodeinstallcheck -eq $true) {Write-Host "Visual Studio Code already Installed"}
 
